@@ -3,15 +3,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth_model extends CI_Model
 {
+    /**
+     * @var string
+     */
     public $id;
+
+    /**
+     * @var string
+     */
     public $name;
+
+    /**
+     * @var string
+     */
     public $lastname;
+
+    /**
+     * @var string
+     */
     public $email;
+
+    /**
+     * @var string
+     */
     public $password;
+
+    /**
+     * @var string
+     */
     public $rememberToken;
+
+    /**
+     * @var string
+     */
     public $created_at;
+
+    /**
+     * @var string
+     */
     public $updated_at;
 
+    /**
+     * Loads the necessary resources to the controller.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -55,4 +89,5 @@ class Auth_model extends CI_Model
 
         return $result[0];
     }
+
 }

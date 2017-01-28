@@ -17,15 +17,14 @@ class Auth
     {
         $this->CI =& get_instance();
         $this->CI->load->model('auth/Auth_model', 'authModel');
-        $this->CI->load->library('Session', 'session');
         $this->CI->load->library('Hash', 'hash');
     }
 
     /**
      * User authentication and session data creation.
      *
-     * @param array   $authData
-     * @param string  $redirect
+     * @param array  $authData
+     * @param string $redirect
      *
      * @return mixed
      */

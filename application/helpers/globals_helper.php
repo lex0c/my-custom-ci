@@ -103,7 +103,7 @@ if (!function_exists('old'))
     }
 }
 
-if (!function_exists('dd')) {
+if (!function_exists('vdump')) {
     /**
      * Dump the passed variables and end the script.
      *

@@ -13,6 +13,3 @@ CREATE TABLE users (
 
 
 INSERT INTO users(name, lastname, email, password, updated_at) VALUES ('Léo', 'Castro', 'leonardo_carvalho@outlook.com', '5JjVR9SSxMDRwcGTFFXZONGdRVHNSRmNO9kcWdlMkITYkADOk0kaBJjTUVFNNRVW08ERVRjTyUkMNV2L', '2017-01-28 13:28:40');
-
-SELECT id, name, lastname, password FROM users where email = 'leonardo_carvalho@outlook.com';
-

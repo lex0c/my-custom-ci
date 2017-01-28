@@ -1,10 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-//require_once ("auth/core/Auth.php");
-
 class Home extends CI_Controller
 {
+    /**
+     * Loads the necessary resources to the controller.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -20,5 +21,5 @@ class Home extends CI_Controller
     {
         $this->load->view('home');
     }
-}
 
+}

@@ -9,6 +9,12 @@ class Login extends CI_Controller
      * @var string
      */
     protected $redirectIfAuthenticated = 'home';
+
+    /**
+     * Where to redirect users if incorrect access.
+     *
+     * @var string
+     */
     protected $redirectIfNotAuthenticated = 'welcome';
 
     /**
@@ -20,7 +26,7 @@ class Login extends CI_Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for logging in application.
      *
      * @return HttpResponse
      */

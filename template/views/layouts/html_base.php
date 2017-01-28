@@ -24,9 +24,9 @@
     <meta name="twitter:image" content=""/>
     <meta name="twitter:url" content=""/>
 
-    <link rel="stylesheet" href="<?= asset('css/app.min.css') ?>"/>
+    <link rel="stylesheet" href="<?php echo asset('css/app.min.css') ?>"/>
 
-    <?= ie_support_field() ?>
+    <?php echo ie_support_field() ?>
 
     <!-- JSON LD -->
     <script type="application/ld+json">
@@ -43,5 +43,5 @@
         
     </div>
 </body>
-    <script src="<?= asset('js/app.min.js') ?>"></script>
+    <script src="<?php echo asset('js/app.min.js') ?>"></script>
 </html>
