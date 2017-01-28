@@ -32,7 +32,7 @@
 
     <?php echo ie_support_field() ?>
 
-    <title>Welcome to CI</title>
+    <title>Welcome</title>
 </head>
 <body>
     <?php require_once ('layouts/includes/navbar.php'); ?>

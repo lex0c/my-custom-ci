@@ -41,7 +41,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Sign in to access the authenticated area</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="<?php echo route('login/auth') ?>">
+                        <form class="form-horizontal" method="POST" action="<?php echo route('login/auth') ?>" accept-charset="utf-8">
                             <div class="form-group">
                                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
                                 <div class="col-md-6">
