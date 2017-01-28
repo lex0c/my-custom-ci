@@ -1,14 +1,13 @@
 {
-	"description": "The CodeIgniter framework",
-	"name": "codeigniter/framework",
+	"name": "lleocastro/my-custom-ci",
+	"description": "My custom Version of CodeIgniter",
 	"type": "project",
-	"homepage": "https://codeigniter.com",
+	"homepage": "https://github.com/lleocastro/my-custom-ci",
 	"license": "MIT",
 	"support": {
 		"forum": "http://forum.codeigniter.com/",
-		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
-		"irc": "irc://irc.freenode.net/codeigniter",
-		"source": "https://github.com/bcit-ci/CodeIgniter"
+		"issues": "https://github.com/lleocastro/my-custom-ci/issues",
+		"source": "https://github.com/lleocastro/my-custom-ci"
 	},
 	"require": {
 		"php": ">=5.5.9",

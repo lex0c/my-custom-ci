@@ -44,10 +44,22 @@ class ControllerNameHere extends CI_Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     *
+     * @return HttpResponse
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int   $id
-     * @param  array $errors
+     * @param int   $id
+     * @param array $errors
      *
      * @return HttpResponse
      */
@@ -59,7 +71,7 @@ class ControllerNameHere extends CI_Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return HttpResponse
      */
@@ -69,24 +81,15 @@ class ControllerNameHere extends CI_Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return HttpResponse
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return HttpResponse
      */
     public function destroy($id)
     {
         //
     }
+
 }

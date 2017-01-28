@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(!function_exists('env')) {
+if (!function_exists('env')) {
     /**
      * Gets the value of an environment variable.
      *
@@ -88,7 +88,7 @@ if (!function_exists('spit'))
     }
 }
 
-if(!function_exists('old'))
+if (!function_exists('old'))
 {
     /**
      *
@@ -103,7 +103,7 @@ if(!function_exists('old'))
     }
 }
 
-if(!function_exists('dd')) {
+if (!function_exists('dd')) {
     /**
      * Dump the passed variables and end the script.
      *
@@ -117,7 +117,7 @@ if(!function_exists('dd')) {
     }
 }
 
-if(!function_exists('ie_support_field')) {
+if (!function_exists('ie_support_field')) {
     /**
      * Generate a script for support for IE in form.
      *
@@ -126,8 +126,8 @@ if(!function_exists('ie_support_field')) {
     function ie_support_field()
     {
         $field = "<!--[if lte IE 8]>\n";
-            $field .= '<script src="<?= asset(\'js/html5shiv.min.js\') ?>"></script>'."\n";
-            $field .= '<script src="<?= asset(\'js/respond.min.js\') ?>"></script>'."\n";
+            $field .= "<script src='".asset('js/html5shiv.min.js')."'></script>"."\n";
+            $field .= "<script src='".asset('js/respond.min.js')."'></script>"."\n";
         $field .= "<![endif]-->\n";
 
         return $field;
@@ -142,7 +142,8 @@ if (! function_exists('csrf_field')) {
      */
     function csrf_field()
     {
-        //
+        //'<input type="hidden" name="csrf_token" value=""/>'
+        //return ;
     }
 }
 
