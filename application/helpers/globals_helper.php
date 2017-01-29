@@ -110,7 +110,7 @@ if (!function_exists('vdump')) {
      * @param  mixed $data
      * @return void
      */
-    function dd($data)
+    function vdump($data)
     {
         Symfony\Component\VarDumper\VarDumper::dump($data);
         die(1);
@@ -125,9 +125,12 @@ if (!function_exists('ie_support_field')) {
      */
     function ie_support_field()
     {
+        $html5shiv = asset('js/html5shiv.min.js');
+        $respond   = asset('js/respond.min.js');
+
         $field = "<!--[if lte IE 8]>\n";
-            $field .= "<script src='".asset('js/html5shiv.min.js')."'></script>"."\n";
-            $field .= "<script src='".asset('js/respond.min.js')."'></script>"."\n";
+            $field .= '<script src='.'"'. $html5shiv .'"'.'></script>'."\n";
+            $field .= '<script src='.'"'. $respond .'"'.'></script>'."\n";
         $field .= "<![endif]-->\n";
 
         return $field;
@@ -142,8 +145,11 @@ if (! function_exists('csrf_field')) {
      */
     function csrf_field()
     {
-        //'<input type="hidden" name="csrf_token" value=""/>'
-        //return ;
+        $CI =& get_instance();
+        $token = $CI->security->get_csrf_hash();
+        $tokenName = $CI->security->get_csrf_token_name();
+
+        return "<input type='hidden' name='{$tokenName}' value='{$token}'/>";
     }
 }
 
@@ -155,18 +161,18 @@ if(!function_exists('auth_data')) {
      */
     function auth_data()
     {
-        require_once (dirname(__DIR__) . '/libraries/Auth.php');
-        $auth = new Auth();
-
-        if($auth->is_authenticated()) {
+        $CI =& get_instance();
+        if($CI->auth->is_authenticated()) {
             $obj = new stdClass();
-            $obj->id = $auth->get_user_data()['auth_user_id'];
-            $obj->name = $auth->get_user_data()['auth_user_name'];
-            $obj->lastname = $auth->get_user_data()['auth_user_lastname'];
-            $obj->email = $auth->get_user_data()['auth_user_email'];
+            $obj->id = $CI->auth->get_user_data()['auth_user_id'];
+            $obj->name = $CI->auth->get_user_data()['auth_user_name'];
+            $obj->lastname = $CI->auth->get_user_data()['auth_user_lastname'];
+            $obj->email = $CI->auth->get_user_data()['auth_user_email'];
 
             return $obj;
         }
+
+        return null;
     }
 }
 

@@ -66,7 +66,7 @@
     /*
      * Loads environment variables
      */
-    $dotenv = new Dotenv\Dotenv(dirname(__DIR__), '.appdata');
+    $dotenv = new Dotenv\Dotenv(dirname(__DIR__));
     $dotenv->load();
     $dotenv->required([
         'APP_URL',
