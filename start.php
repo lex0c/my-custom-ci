@@ -3,7 +3,7 @@
 /**
  *
  */
-if(file_exists(__DIR__ . '/.appdata')) {
+if(file_exists(__DIR__ . '/.env')) {
 
     /**
      * PHP Alias for Starting Local Server
@@ -21,8 +21,8 @@ if(file_exists(__DIR__ . '/.appdata')) {
     echo "Installing project dependencies ...\n";
     shell_exec('composer install');
 
-    echo "Creating file '.appdata'...\n";
-    shell_exec("php -r \"file_exists('.appdata') || copy('.appdata.example', '.appdata');\"");
+    echo "Creating file '.env'...\n";
+    shell_exec("php -r \"file_exists('.env') || copy('.env.example', '.env');\"");
 
     echo "Starting the server, now...\n";
     echo "Server started on 'http://localhost:9000/'\n";
