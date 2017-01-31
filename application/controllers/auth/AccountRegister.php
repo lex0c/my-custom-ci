@@ -4,12 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class AccountRegister extends CI_Controller
 {
     /**
+     * Where to redirect users after register.
+     *
+     * @var string
+     */
+    protected $redirect_to = 'login';
+
+    /**
      * Create a new controller instance.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->auth->is_authenticated();
+        $this->auth->who_see('noauth');
     }
 
     /**
@@ -37,7 +44,7 @@ class AccountRegister extends CI_Controller
             ]);
         }
 
-        return redirect('login');
+        return redirect($this->redirect_to);
     }
 
 }

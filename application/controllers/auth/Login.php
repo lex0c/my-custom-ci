@@ -11,19 +11,12 @@ class Login extends CI_Controller
     protected $redirect_to = 'home';
 
     /**
-     * Where to redirect users if incorrect access.
-     *
-     * @var string
-     */
-    protected $redirect_pub = 'welcome';
-
-    /**
      * Create a new controller instance.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->auth->is_authenticated();
+        $this->auth->who_see('noauth');
     }
 
     /**
@@ -52,14 +45,6 @@ class Login extends CI_Controller
         }
 
         return redirect($this->redirect_to);
-    }
-
-    /**
-     *
-     */
-    public function destroy()
-    {
-        $this->auth->logout($this->redirect_pub);
     }
 
 }
