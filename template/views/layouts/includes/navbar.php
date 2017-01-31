@@ -33,7 +33,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="<?php echo route('/user/logout') ?>">Logout</a>
+                                    <a href="<?php echo route('logout') ?>">Logout</a>
                                 </li>
                             </ul>
                         </li>
