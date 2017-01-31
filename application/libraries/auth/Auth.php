@@ -11,19 +11,22 @@ class Auth
     protected $CI;
 
     /**
+     * store the validations errors.
      *
+     * @var string
      */
     protected $errors = null;
 
     /**
-     *
+     * Create a new auth instance and load necessary resources.
      */
     public function __construct()
     {
         $this->CI =& get_instance();
-        $this->CI->load->model('auth/Auth_model', 'auth_model');
         $this->CI->load->library('form_validation');
-        $this->CI->load->library('Hash', 'hash');
+        $this->CI->load->library('auth/model/Auth_model', 'auth_model');
+        $this->CI->load->library('auth/security/Hash', 'hash');
+        //$this->CI->load->library('HashMask', 'mask');
     }
 
     /**
@@ -94,7 +97,9 @@ class Auth
     }
 
     /**
+     * Checks whether the guest not is authenticated.
      *
+     * @return bool
      */
     public function cannot()
     {
@@ -105,45 +110,31 @@ class Auth
      * Redirect client if it tries to access a route that needs
      * authentication.
      *
-     * @param string  $access
-     * @param string  $redirect
-     * @param  array  $excepts
+     * @param string $access
+     * @param string $redirect_to
+     * @param array  $excepts
      *
-     * @return void
+     * @return mixed HttpResponse
      */
-    public function who_see($access, $redirect = 'login', $excepts = [])
+    public function who_see($access, $redirect_to = '/', array $excepts = [])
     {
         switch($access) {
             case 'auth':
-                if(!$this->can()) {
-                    redirect($redirect);
+                if ($this->can()) {
+                    return true; // Actions here...
                 }
+
+                return redirect($redirect_to);
                 break;
-            case 'public':
-                // ...
+            case 'noauth':
+                if ($this->cannot()) {
+                    return true; // Actions here...
+                }
+
+                return redirect($redirect_to);
                 break;
             default:
                 throw new InvalidArgumentException('Invalid access type.');
-        }
-    }
-
-    /**
-     *
-     */
-    public function is_authenticated($redirect_to = 'home')
-    {
-        if ($this->can()) {
-//            if (!empty($excepts)) {
-//                foreach ($excepts as $except) {
-//                    if (($except instanceof $this) && (method_exists($this, $except))) {
-//                        //
-//                    } else {
-//                        return redirect($redirect_to);
-//                    }
-//                }
-//            }
-
-            return redirect($redirect_to);
         }
     }
 
@@ -154,12 +145,16 @@ class Auth
     {}
 
     /**
+     * Destroy the user data session.
      *
+     * @param string $redirect_to
+     *
+     * @return HttpResponse
      */
-    public function logout($redirect = '/')
+    public function logout($redirect_to = '/')
     {
         $this->CI->session->sess_destroy();
-        if(($this->CI->session->has_userdata('auth_user_status') !== null)) {
+        if ($this->CI->session->has_userdata('auth_user_status')) {
             $this->CI->session->unset_userdata([
                 'auth_user_id',
                 'auth_user_name',
@@ -172,20 +167,24 @@ class Auth
             $this->CI->session->sess_destroy();
         }
 
-        redirect($redirect);
+        return redirect($redirect_to);
     }
 
     /**
+     * Register a new user.
      *
+     * @param array $register_data
+     *
+     * @return Auth
      */
     public function register(array $register_data)
     {
         $register_data = array_map('htmlentities', $register_data);
         $this->CI->form_validation->set_rules('name', 'name', 'trim|required|min_length[3]|max_length[50]');
         $this->CI->form_validation->set_rules('lastname', 'lastname', 'trim|required|min_length[3]|max_length[50]');
-        $this->CI->form_validation->set_rules('email', 'e-mail', 'trim|required|valid_email|max_length[150]');
+        $this->CI->form_validation->set_rules('email', 'e-mail', 'trim|required|valid_email|max_length[100]');
         $this->CI->form_validation->set_rules('password', 'password', 'required|min_length[6]');
-        $this->CI->form_validation->set_rules('password_confirm', 'password', 'required|matches[password]');
+        $this->CI->form_validation->set_rules('password_confirm', 'password_confirm', 'required|matches[password]');
 
         if ($this->CI->form_validation->run() !== false) {
 
@@ -213,22 +212,31 @@ class Auth
     }
 
     /**
+     * Retrieve all session user data.
      *
+     * @return array
      */
     public function get_user_data()
     {
         return $this->CI->session->all_userdata();
     }
 
+    public function routes()
+    {
+        return require_once ('routes.php');
+    }
+
     /**
+     * Returns validation errors.
      *
+     * @return array
      */
     public function errors()
     {
-        $errors = $this->errors;
-        $errors = trim($errors);
+        $errors = trim($this->errors);
         $errors = str_ireplace('<p>', '', $errors);
         $errors = str_ireplace('</p>', '', $errors);
+
         return array_filter(explode('.', $errors));
     }
 
