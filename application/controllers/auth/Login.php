@@ -8,14 +8,14 @@ class Login extends CI_Controller
      *
      * @var string
      */
-    protected $redirectIfAuthenticated = 'home';
+    protected $redirect_to = 'home';
 
     /**
      * Where to redirect users if incorrect access.
      *
      * @var string
      */
-    protected $redirectIfNotAuthenticated = 'welcome';
+    protected $redirect_pub = 'welcome';
 
     /**
      * Create a new controller instance.
@@ -23,6 +23,7 @@ class Login extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->auth->is_authenticated();
     }
 
     /**
@@ -32,53 +33,33 @@ class Login extends CI_Controller
      */
     public function index()
     {
-        if(!$this->auth->is_authenticated()) {
-            return $this->load->view('auth/login');
-        } else {
-            redirect($this->redirectIfAuthenticated);
-        }
+        return $this->load->view('auth/sign-in');
     }
 
     /**
      * Authenticates the user with their credentials.
      *
-     * @return void
+     * @return HttpResponse
      */
-    public function authenticable()
+    public function show()
     {
-        if(!$this->auth->is_authenticated()) {
+        $callback = $this->auth->authenticate($this->input->post());
 
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-            $this->form_validation->set_rules('password', 'Senha', 'trim|required|min_length[6]');
-
-            if($this->form_validation->run() != false) {
-                $authData = $this->input->post();
-                $this->auth->authenticate([
-                    'email'    => $authData['email'],
-                    'password' => $authData['password'],
-                    'remember' => isset($authData['remember'])?$authData['remember']:false
-                ], $this->redirectIfAuthenticated);
-            } else {
-                $errors = trim(validation_errors());
-                $errors = str_ireplace('<p>', '', $errors);
-                $errors = str_ireplace('</p>', '', $errors);
-
-                $this->load->view('auth/login', [
-                    'errors' => array_filter(explode('.', $errors))
-                ]);
-            }
-        } else {
-            redirect($this->redirectIfAuthenticated);
+        if ($callback !== null) {
+            return $this->load->view('auth/sign-in', [
+                'errors' => $callback->errors()
+            ]);
         }
+
+        return redirect($this->redirect_to);
     }
 
-    public function logout()
+    /**
+     *
+     */
+    public function destroy()
     {
-        if($this->auth->is_authenticated()) {
-            $this->auth->logout($this->redirectIfNotAuthenticated);
-        }
-
-        redirect($this->redirectIfNotAuthenticated);
+        $this->auth->logout($this->redirect_pub);
     }
 
 }

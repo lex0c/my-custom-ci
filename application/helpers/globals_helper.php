@@ -162,7 +162,7 @@ if(!function_exists('auth_data')) {
     function auth_data()
     {
         $CI =& get_instance();
-        if($CI->auth->is_authenticated()) {
+        if($CI->auth->can()) {
             $obj = new stdClass();
             $obj->id = $CI->auth->get_user_data()['auth_user_id'];
             $obj->name = $CI->auth->get_user_data()['auth_user_name'];
