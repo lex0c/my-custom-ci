@@ -53,7 +53,7 @@ class Auth_model extends CI_Model
 
     public function get_user($email)
     {
-        $sql = "SELECT id, name, lastname, password FROM users WHERE email = ?";
+        $sql = "SELECT id, name, lastname, password FROM users WHERE email = ? LIMIT 1";
         $query = $this->db->query($sql, $email);
 
         $result = $query->result();
