@@ -3,8 +3,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="robots" content="noindex, nofollow"/>
@@ -36,6 +34,7 @@
 </head>
 <body>
     <?php require_once ('layouts/includes/navbar.php'); ?>
+
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -59,6 +58,7 @@
             </div>
         </div>
     </div>
+
 </body>
     <script src="<?php echo asset('js/jquery.min.js') ?>"></script>
     <script src="<?php echo asset('js/bootstrap.min.js') ?>"></script>

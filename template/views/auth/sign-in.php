@@ -1,3 +1,4 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
 
     <?php echo ie_support_field() ?>
 
-    <title>Login</title>
+    <title>Sign in</title>
 </head>
 <body>
     <?php require_once (dirname(__DIR__) . '/layouts/includes/show-errors.php'); ?>
@@ -26,7 +27,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Sign in to access the authenticated area</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="<?php echo route('login/auth') ?>" accept-charset="utf-8">
+                        <form class="form-horizontal" method="post" action="<?php echo route('login/auth') ?>" accept-charset="utf-8">
                             <div class="form-group">
                                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
                                 <div class="col-md-6">

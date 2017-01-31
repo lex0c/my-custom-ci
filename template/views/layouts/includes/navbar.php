@@ -17,14 +17,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <?php if($this->auth->is_authenticated()): ?>
+                    <?php if($this->auth->can()): ?>
                         <a href="<?php echo route('/home') ?>" class="btn btn-default navbar-btn" role="button">Home</a>
                     <?php endif; ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <?php if(!$this->auth->is_authenticated()): ?>
-                        <li><a href="<?php echo route('/login') ?>">Login</a></li>
-                        <li><a href="#">Register</a></li>
+                    <?php if(!$this->auth->can()): ?>
+                        <a class="btn btn-primary navbar-btn" href="<?php echo route('/login') ?>">Sign in</a>
+                        <a class="btn btn-default navbar-btn" href="<?php echo route('/register') ?>">Sign up</a>
                     <?php else: ?>
                         <li class="dropdown">
                             <a href="<?php echo route('/home') ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
