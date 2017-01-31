@@ -69,6 +69,7 @@
     $dotenv = new Dotenv\Dotenv(dirname(__DIR__));
     $dotenv->load();
     $dotenv->required([
+        'APP_KEY',
         'APP_URL',
         'DB_DRIVER',
         'DB_DATABASE',
