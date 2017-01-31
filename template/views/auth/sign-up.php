@@ -36,6 +36,13 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="lastname" class="col-md-4 control-label">Last Name</label>
+                                <div class="col-md-6">
+                                    <input id="lastname" name="lastname" type="text" class="form-control" value="<?php echo old('lastname') ?>" placeholder="Example: Silva, Abreu, Lincon, Haper, etc..." autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
                                 <div class="col-md-6">
                                     <input id="email" name="email" type="email" class="form-control" value="<?php echo old('email') ?>" placeholder="Example: example@gmail.com">
