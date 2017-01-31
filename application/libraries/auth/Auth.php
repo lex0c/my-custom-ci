@@ -24,6 +24,7 @@ class Auth
     {
         $this->CI =& get_instance();
         $this->CI->load->library('form_validation');
+        $this->CI->load->model('User_model', 'user');
         $this->CI->load->library('auth/model/Auth_model', 'auth_model');
         $this->CI->load->library('auth/security/Hash', 'hash');
         //$this->CI->load->library('HashMask', 'mask');
@@ -43,7 +44,7 @@ class Auth
         $this->CI->form_validation->set_rules('password', 'password', 'required|min_length[6]');
 
         if ($this->CI->form_validation->run() !== false) {
-            $user = $this->CI->auth_model->get_user($auth_data['email']);
+            $user = $this->CI->user->get_by_email($auth_data['email']);
 
             if(($user == null)
                 || (!$this->CI->hash->is_equals($auth_data['password'], $user->password))) {
@@ -194,7 +195,7 @@ class Auth
             $auth_token = $addr . date("Ymd") . $agent . $user->id;
             $auth_token = $this->CI->hash->generate($auth_token);
 
-            $status = $this->CI->auth_model->set_user([
+            $status = $this->CI->user->save([
                 'name' => $register_data['name'],
                 'lastname' => $register_data['lastname'],
                 'email'    => $register_data['email'],
