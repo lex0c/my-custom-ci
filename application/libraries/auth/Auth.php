@@ -16,6 +16,7 @@ class Auth
      * @var string
      */
     protected $errors = null;
+    protected $error_label = [];
 
     /**
      * Create a new auth instance and load necessary resources.
@@ -27,6 +28,7 @@ class Auth
         $this->CI->load->model('User_model', 'user');
         $this->CI->load->library('auth/model/Auth_model', 'auth_model');
         $this->CI->load->library('auth/security/Hash', 'hash');
+        $this->CI->lang->load("auth");
         //$this->CI->load->library('HashMask', 'mask');
     }
 
@@ -48,7 +50,8 @@ class Auth
 
             if(($user == null)
                 || (!$this->CI->hash->is_equals($auth_data['password'], $user->password))) {
-                $this->errors = 'Invalid credentials';
+                $this->errors = $this->CI->lang->line('login_global_error');
+                $this->error_label['credentials'] = $this->CI->lang->line('login_global_error');
                 return $this;
             }
 
@@ -237,8 +240,14 @@ class Auth
         $errors = trim($this->errors);
         $errors = str_ireplace('<p>', '', $errors);
         $errors = str_ireplace('</p>', '', $errors);
+        $errors = str_ireplace("\n", '', $errors);
 
         return array_filter(explode('.', $errors));
+    }
+
+    public function get_error_label()
+    {
+        return $this->error_label;
     }
 
 }
