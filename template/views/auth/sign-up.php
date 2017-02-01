@@ -8,17 +8,12 @@
     <meta name="robots" content="noindex, nofollow"/>
 
     <link rel="stylesheet" href="<?php echo asset('css/app.min.css') ?>"/>
-    <link rel="stylesheet" href="<?php echo asset('css/toastr.min.css') ?>"/>
-
-    <script src="<?php echo asset('js/jquery.min.js') ?>"></script>
-    <script src="<?php echo asset('js/toastr.min.js') ?>"></script>
 
     <?php echo ie_support_field() ?>
 
     <title>Sign up</title>
 </head>
 <body>
-    <?php require_once (dirname(__DIR__) . '/layouts/includes/show-errors.php'); ?>
     <?php require_once (dirname(__DIR__) . '/layouts/includes/navbar.php'); ?>
 
     <div class="container">
@@ -27,6 +22,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Sign up to access the authenticated area</div>
                     <div class="panel-body">
+                        <?php require_once (dirname(__DIR__) . '/layouts/includes/show-errors.php'); ?>
                         <form class="form-horizontal" method="post" action="<?php echo route('register/auth') ?>" accept-charset="utf-8">
                             <div class="form-group">
                                 <label for="name" class="col-md-4 control-label">Your Name</label>
@@ -59,7 +55,7 @@
                             <div class="form-group">
                                 <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
                                 <div class="col-md-6">
-                                    <input id="password-confirm" name="password_confirm" type="password" class="form-control" placeholder="Repeat password from above">
+                                    <input id="password_confirm" name="password_confirm" type="password" class="form-control" placeholder="Repeat password from above">
                                 </div>
                             </div>
 
@@ -79,6 +75,6 @@
     </div>
 
 </body>
-    <script src="<?php echo asset('js/app.min.js') ?>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="<?php echo asset('js/bootstrap.min.js') ?>"></script>
 </html>

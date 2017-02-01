@@ -8,17 +8,12 @@
     <meta name="robots" content="noindex, nofollow"/>
 
     <link rel="stylesheet" href="<?php echo asset('css/app.min.css') ?>"/>
-    <link rel="stylesheet" href="<?php echo asset('css/toastr.min.css') ?>"/>
-
-    <script src="<?php echo asset('js/jquery.min.js') ?>"></script>
-    <script src="<?php echo asset('js/toastr.min.js') ?>"></script>
 
     <?php echo ie_support_field() ?>
 
     <title>Sign in</title>
 </head>
 <body>
-    <?php require_once (dirname(__DIR__) . '/layouts/includes/show-errors.php'); ?>
     <?php require_once (dirname(__DIR__) . '/layouts/includes/navbar.php'); ?>
 
     <div class="container">
@@ -27,6 +22,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Sign in to access the authenticated area</div>
                     <div class="panel-body">
+                        <?php require_once (dirname(__DIR__) . '/layouts/includes/show-errors.php'); ?>
                         <form class="form-horizontal" method="post" action="<?php echo route('login/auth') ?>" accept-charset="utf-8">
                             <div class="form-group">
                                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
@@ -60,6 +56,6 @@
         </div>
     </div>
 </body>
-    <script src="<?php echo asset('js/app.min.js') ?>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="<?php echo asset('js/bootstrap.min.js') ?>"></script>
 </html>
